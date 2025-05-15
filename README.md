@@ -9,3 +9,10 @@ The Readme will have the steps per installation/setup to including new configura
 ```
 $ npm install webpack webpack-cli --save-dev
 ```
+
+## 2. setup the basic structure
+
+```
+\dist\index.html
+\src\index.js
+```
