@@ -46,3 +46,21 @@ To build and create `\dist\main.js`
 ```
 $ npx webpack
 ```
+
+
+## 4. use config file
+
+Instead of using the basic default values for webpack, use the `web.config.js` to control webpack parameters.
+
+*look at webpack.config.js file for reference*
+
+`mode` - can specify *development* or *production*
+`entry` - starting point
+`resolve` - watch for these files/type of files
+`output` - output file
+
+
+#### source
+
+https://webpack.js.org/guides/
+https://dev.to/ikusteu/the-common-man-guide-to-webpack-webpack-for-beginners-1i5o
