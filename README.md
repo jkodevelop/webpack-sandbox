@@ -50,7 +50,7 @@ $ npx webpack
 
 ## 4. use config file
 
-Instead of using the basic default values for webpack, use the `web.config.js` to control webpack parameters.
+Instead of using the basic default values for webpack, use the `webpack.config.js` to control webpack parameters.
 
 *look at webpack.config.js file for reference*
 
@@ -58,6 +58,23 @@ Instead of using the basic default values for webpack, use the `web.config.js` t
 `entry` - starting point
 `resolve` - watch for these files/type of files
 `output` - output file
+
+
+## 5. loading & bundling CSS
+
+Adding module.rules with `style-loader` and `css-loader` (order is important) to process and inject css into the webpack bundle.
+
+1. first install the loaders
+```
+npm install --save-dev style-loader css-loader
+```
+
+2. add a new module/rules in `webpack.config.js`
+
+3. add the `style.css` in `.\src` folder AND import it through the index.js file
+
+The `css-loader` processes the import from javascript and `style-loader` injects the css into the html through javascript. The index.html source file will not have any style, it gets injected through main.js.
+
 
 
 #### source
