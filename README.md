@@ -31,7 +31,7 @@ $ npm install --save lodash
 ```
 
 note: After webpack version 4 the webpack.config.js is not needed anymore because it uses default values, but only with the most basic use case.
-note: `index.html` is required because webpack doesn't generate the html file for the project. It only compiles *.js files into \dist\main.js by default. And the script reference to `main.js` is added.
+note: `index.html` is required because webpack doesn't generate the html file for the project. It only compiles .js files into \dist\main.js by default. And the script reference to `main.js` is added.
 note: Webpack auto generates license files from node libraries that are needed in tthe `\dist` folder
 
 The default values for the most basic use case are:
@@ -74,6 +74,25 @@ npm install --save-dev style-loader css-loader
 3. add the `style.css` in `.\src` folder AND import it through the index.js file
 
 The `css-loader` processes the import from javascript and `style-loader` injects the css into the html through javascript. The index.html source file will not have any style, it gets injected through main.js.
+
+
+## 5b. adding SASS
+
+Adding Sass support, with this loader the power of Sass can be added into the bundler
+
+1. first install the loaders and sass
+```
+npm install --save-dev sass sass-loader
+```
+
+2. edit the *rules.test*, this will look for .css | .scss | .sass 
+```
+test: /\.(sc|sa|c)ss$/i
+``` 
+
+3. add the sass-loader into the *rules.use*, note the order matters. sass-loader is added at the end to be the first loader to run in the list. This is based on webpack processing order rule.
+
+source: https://webpack.js.org/loaders/sass-loader/#root
 
 
 

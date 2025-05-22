@@ -12,8 +12,16 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.css$/i,
-      use: ['style-loader','css-loader'],
+      test: /\.(sc|sa|c)ss$/i,
+      use: [
+        // webpack's rules order
+        // step 3: inject CSS into the DOM
+        'style-loader',
+        // step 2: Tranlates CSS into CommonJS
+        'css-loader',
+        // step 1: Compiles Sass to CSS
+        'sass-loader'],
     }],
   },
 };
+
