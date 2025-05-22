@@ -2,4 +2,5 @@
 
 .hello {
   font-weight: bold;
+  background: url('./assets/icon.png');
 }

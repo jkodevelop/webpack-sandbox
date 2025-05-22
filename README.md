@@ -92,8 +92,21 @@ test: /\.(sc|sa|c)ss$/i
 
 3. add the sass-loader into the *rules.use*, note the order matters. sass-loader is added at the end to be the first loader to run in the list. This is based on webpack processing order rule.
 
-source: https://webpack.js.org/loaders/sass-loader/#root
+source: https://webpack.js.org/loaders/sass-loader/
 
+
+## 6. Static Content loading, aka Asset Management
+
+Webpack has a built in assets loader, this allows for images and fonts to be included without any external loader to be installed. 
+This allows webpack to load in static content either through javascript import or even css url() directives.
+
+1. to use this edit the rules in the config to include a new array of content.
+the example type support replaces the file-loader
+```
+type: 'asset/resource'
+```
+
+source: https://webpack.js.org/guides/asset-modules/
 
 
 #### source
