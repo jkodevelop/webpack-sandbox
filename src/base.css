@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'RobotoGoogleFont';
+  src: url('./fonts/Roboto.ttf') format('truetype'),
+    url('./fonts/Roboto-Italic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
 body {
 	background-color: #ddd;
 }
