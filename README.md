@@ -108,6 +108,18 @@ type: 'asset/resource'
 
 source: https://webpack.js.org/guides/asset-modules/
 
+## 7. additional loaders examples
+
+There are more loaders like `csv-loader` & `xml-loader`
+
+1. install the loaders
+```
+npm install --save-dev csv-loader xml-loader
+```
+
+2. edit the rules and add the loaders into the webpack.config.js
+
+
 
 #### source
 

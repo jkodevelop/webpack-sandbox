@@ -202,7 +202,7 @@ eval("module.exports = __webpack_require__.p + \"3c9d0f6513f7cfe91016.ttf\";\n\n
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _logMe_cjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logMe.cjs */ \"./src/logMe.cjs\");\n/* harmony import */ var _logMe_cjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_logMe_cjs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _altStyle_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./altStyle.scss */ \"./src/altStyle.scss\");\n/* harmony import */ var _assets_icon_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/icon.png */ \"./src/assets/icon.png\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nfunction component() {\r\n    (0,_logMe_cjs__WEBPACK_IMPORTED_MODULE_1__.logMe)();\r\n    const element = document.createElement('div');\r\n    element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default().join(['Hello', 'webpack'], ' ');\r\n    element.classList.add('hello');\r\n    element.classList.add('another');\r\n\r\n    const iconImg = new Image();\r\n    iconImg.src = _assets_icon_png__WEBPACK_IMPORTED_MODULE_4__;\r\n    element.appendChild(iconImg);\r\n\r\n    return element;\r\n}\r\n\r\ndocument.body.appendChild(component());\r\n\n\n//# sourceURL=webpack://webpack-sandbox/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _logMe_cjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logMe.cjs */ \"./src/logMe.cjs\");\n/* harmony import */ var _logMe_cjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_logMe_cjs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _altStyle_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./altStyle.scss */ \"./src/altStyle.scss\");\n/* harmony import */ var _assets_icon_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/icon.png */ \"./src/assets/icon.png\");\n/* harmony import */ var _others_example_xml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./others/example.xml */ \"./src/others/example.xml\");\n/* harmony import */ var _others_example_xml__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_others_example_xml__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _others_example_csv__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./others/example.csv */ \"./src/others/example.csv\");\n/* harmony import */ var _others_example_csv__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_others_example_csv__WEBPACK_IMPORTED_MODULE_6__);\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nfunction component() {\r\n    (0,_logMe_cjs__WEBPACK_IMPORTED_MODULE_1__.logMe)();\r\n    const element = document.createElement('div');\r\n    element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default().join(['Hello', 'webpack'], ' ');\r\n    element.classList.add('hello');\r\n    element.classList.add('another');\r\n\r\n    const iconImg = new Image();\r\n    iconImg.src = _assets_icon_png__WEBPACK_IMPORTED_MODULE_4__;\r\n    element.appendChild(iconImg);\r\n\r\n    console.log((_others_example_xml__WEBPACK_IMPORTED_MODULE_5___default()));\r\n    console.log((_others_example_csv__WEBPACK_IMPORTED_MODULE_6___default()));\r\n    return element;\r\n}\r\n\r\ndocument.body.appendChild(component());\r\n\n\n//# sourceURL=webpack://webpack-sandbox/./src/index.js?");
 
 /***/ }),
 
@@ -213,6 +213,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var loda
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("const _ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\r\n\r\nfunction logMe() {\r\n  console.log(_.join(['Log', 'Me!'], ' '));\r\n}\r\n\r\nmodule.exports = {\r\n  logMe,\r\n}\n\n//# sourceURL=webpack://webpack-sandbox/./src/logMe.cjs?");
+
+/***/ }),
+
+/***/ "./src/others/example.csv":
+/*!********************************!*\
+  !*** ./src/others/example.csv ***!
+  \********************************/
+/***/ ((module) => {
+
+eval("module.exports = [[\"to\",\"from\",\"heading\",\"body\"],[\"Mary\",\"John\",\"Reminder\",\"Call Cindy on Tuesday\"],[\"Zoe\",\"Bill\",\"Reminder\",\"Buy orange juice\"],[\"Autumn\",\"Lindsey\",\"Letter\",\"I miss you\"]]\n\n//# sourceURL=webpack://webpack-sandbox/./src/others/example.csv?");
+
+/***/ }),
+
+/***/ "./src/others/example.xml":
+/*!********************************!*\
+  !*** ./src/others/example.xml ***!
+  \********************************/
+/***/ ((module) => {
+
+eval("module.exports = {\"note\":{\"to\":[\"Mary\"],\"from\":[\"John\"],\"heading\":[\"Reminder\"],\"body\":[\"Call Cindy on Tuesday\"]}}\n\n//# sourceURL=webpack://webpack-sandbox/./src/others/example.xml?");
 
 /***/ }),
 

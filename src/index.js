@@ -6,6 +6,9 @@ import './altStyle.scss';
 
 import Icon from './assets/icon.png';
 
+import xmlExample from './others/example.xml';
+import csvExample from './others/example.csv';
+
 function component() {
     logMe();
     const element = document.createElement('div');
@@ -17,6 +20,9 @@ function component() {
     iconImg.src = Icon;
     element.appendChild(iconImg);
 
+    console.log(xmlExample);
+    console.log(csvExample);
+    
     return element;
 }
 
