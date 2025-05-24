@@ -1,13 +1,19 @@
 const path = require('path');
 
+// custom parser libraries
+const yaml = require('yamljs');
+
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: { 
+    index: './src/index.js',
+    print: './src/print.js'
+  },
   resolve: {
     extensions: [".js",".cjs"],
   },
   output: {
-    filename: 'main.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -33,6 +39,12 @@ module.exports = {
     },{
       test: /\.xml$/i,
       use: ['xml-loader'],
+    },{
+      test: /\.yaml$/i,
+      type: 'json',
+      parser: {
+        parse: yaml.parse,
+      },
     }],
   },
 };

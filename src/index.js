@@ -6,8 +6,13 @@ import './altStyle.scss';
 
 import Icon from './assets/icon.png';
 
+import printMe from './print.js';
+
 import xmlExample from './others/example.xml';
 import csvExample from './others/example.csv';
+import jsonExample from './others/example.json';
+
+import yamlExample from './others/example.yaml';
 
 function component() {
     logMe();
@@ -22,7 +27,12 @@ function component() {
 
     console.log(xmlExample);
     console.log(csvExample);
-    
+    console.log(jsonExample);
+
+    console.log(yamlExample);
+
+    printMe();
+
     return element;
 }
 

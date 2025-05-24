@@ -108,7 +108,7 @@ type: 'asset/resource'
 
 source: https://webpack.js.org/guides/asset-modules/
 
-## 7. additional loaders examples
+## 7. Additional loaders examples
 
 There are more loaders like `csv-loader` & `xml-loader`
 
@@ -118,6 +118,41 @@ npm install --save-dev csv-loader xml-loader
 ```
 
 2. edit the rules and add the loaders into the webpack.config.js
+
+
+## 8. Using Custom Parsers
+
+Instead of loaders, custom parsers can be used to process specific file types such as yaml files
+
+**IMPORTANT note:** These parser libraries are not specifically made for webpack but webpack can use their parse function to pass the files type based on the rules set in webpack.config.js
+
+1. install the parser
+```
+npm install --save-dev yamljs
+```
+
+2. add the parser rule set in webpack.config.js
+
+source: https://github.com/jeremyfa/yaml.js
+
+
+## 9. Output Management, multiple entry and multiple output bundles
+
+Webpack can handle multiple entries and output bundles based on the entries.
+*note:* the output is based on the entry part of the webpack.config.js, the bundles do not need to be embedded or imported for webpack to build the bundles from them. Example: print.js and index.js can be completely disconnected and index.html does not have reference to print.js BUT webpack will still create the print.bundle.js, even though it has no functionality.
+
+1. edit the `entry` field and `output` field
+```
+entry: { 
+  index: './src/index.js',
+  print: './src/print.js'
+},
+...  
+output: {
+  filename: '[name].bundle.js',
+  path: path.resolve(__dirname, 'dist'),
+},
+```
 
 
 
