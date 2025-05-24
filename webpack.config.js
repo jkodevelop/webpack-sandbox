@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // custom parser libraries
 const yaml = require('yamljs');
@@ -18,6 +19,12 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin({ parallel:true }),
+    ],
+    minimize: true, // enable minification when mode:'development', without this only mode:'producton' will minify
   },
   plugins: [
     new HtmlWebpackPlugin({

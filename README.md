@@ -8,7 +8,7 @@ The Readme will have the steps per installation/setup to including new configura
 
 Install the necessary packages.
 ```
-$ npm install webpack webpack-cli --save-dev
+$ npm install --save-dev webpack webpack-cli
 ```
 
 
@@ -224,6 +224,34 @@ new MiniCssExtractPlugin({
 ```
 
 source: https://webpack.js.org/plugins/mini-css-extract-plugin/
+
+
+## 12. CssMinimizerWebpackPlugin, enables css minification
+
+**CssMinimizerWebpackPlugin**
+
+1. install the plugin
+```
+npm install --save-dev css-minimizer-webpack-plugin
+```
+
+2. add plugin and edit webpack.config.js
+```
+optimization: {
+  minimizer: [
+    new CssMinimizerPlugin(),
+  ],
+},
+```
+
+Useful options in `minimizer` and options
+```
+new CssMinimizerPlugin({ parallel:true }),
+...
+minimize: true // this enables minify in mode:development
+```
+
+source: https://webpack.js.org/plugins/css-minimizer-webpack-plugin/
 
 
 
