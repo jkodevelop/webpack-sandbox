@@ -171,6 +171,19 @@ plugins: [
 ```
 
 
+## 10b. clean /dist folder
+
+With webpack auto generate the index.html, the `dist` folder can be cleaned everytime webpack builds.
+
+1. add clean in output
+```
+output: {
+	...
+	clean: true
+}
+```
+
+
 
 #### source
 
