@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
@@ -16,6 +17,11 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Get Started Webpack',
+    }),
+  ],
   module: {
     rules: [{
       test: /\.(sc|sa|c)ss$/i,

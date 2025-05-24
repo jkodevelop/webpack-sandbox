@@ -155,6 +155,22 @@ output: {
 ```
 
 
+## 10. HtmlWebpackPlugin, generate the index.html automatically
+
+Webpack has a feature called plugin to add more functionality. 
+HtmlWebpackPlugin allows webpack to auto generate index.html
+*note:* delete the `dist/index.html` and let webpack create and replace it.
+
+1. add plugin into webpack.config.js
+```
+plugins: [
+  new HtmlWebpackPlugin({
+    title: 'Get Started Webpack',
+  }),
+],
+```
+
+
 
 #### source
 
