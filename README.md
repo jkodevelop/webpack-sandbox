@@ -228,7 +228,7 @@ source: https://webpack.js.org/plugins/mini-css-extract-plugin/
 
 ## 12. CssMinimizerWebpackPlugin, enables css minification
 
-**CssMinimizerWebpackPlugin**
+**CssMinimizerWebpackPlugin** this allows webpack to minify css output on build
 
 1. install the plugin
 ```
@@ -252,6 +252,27 @@ minimize: true // this enables minify in mode:development
 ```
 
 source: https://webpack.js.org/plugins/css-minimizer-webpack-plugin/
+
+
+## 13. CopyWebpackPlugin, copy files to output directly
+
+**CopyWebpackPlugin** this enables copy of folder/file
+
+1. Install the plugin
+```
+npm install --save-dev copy-webpack-plugin
+```
+
+2. add the plugin
+```
+new CopyPlugin({
+  patterns: [
+    { from: "src/secretstatic", to: "secret" },
+  ],
+}),
+```
+
+source: https://webpack.js.org/plugins/copy-webpack-plugin/
 
 
 
