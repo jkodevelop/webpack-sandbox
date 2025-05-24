@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // custom parser libraries
 const yaml = require('yamljs');
@@ -22,14 +23,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Get Started Webpack',
     }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
   ],
   module: {
     rules: [{
       test: /\.(sc|sa|c)ss$/i,
       use: [
         // webpack's rules order
-        // step 3: inject CSS into the DOM
-        'style-loader',
+        // step 3: extract the css into an external stylesheet .css file
+        MiniCssExtractPlugin.loader,
         // step 2: Tranlates CSS into CommonJS
         'css-loader',
         // step 1: Compiles Sass to CSS

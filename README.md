@@ -158,10 +158,15 @@ output: {
 ## 10. HtmlWebpackPlugin, generate the index.html automatically
 
 Webpack has a feature called plugin to add more functionality. 
-HtmlWebpackPlugin allows webpack to auto generate index.html
+**HtmlWebpackPlugin** allows webpack to auto generate index.html
 *note:* delete the `dist/index.html` and let webpack create and replace it.
 
-1. add plugin into webpack.config.js
+1. install the plugin
+```
+npm install --save-dev html-webpack-plugin
+```
+
+2. add plugin into webpack.config.js
 ```
 plugins: [
   new HtmlWebpackPlugin({
@@ -182,6 +187,43 @@ output: {
 	clean: true
 }
 ```
+
+
+## 11. MiniCssExtractPlugin, extract StyleSheet instead of injecting css
+
+**MiniCssExtractPlugin** is a plugin that allows for CSS to be extracted and included into the site by a `.css` file. 
+This replaces `style-loader`: this injects css rules into the site. MiniCssExtractPlugin will generate and put the css file into the `dist` folder on build.
+
+1. install the plugin
+```
+npm install --save-dev mini-css-extract-plugin
+```
+
+2. add plugin into webpack.config.js
+```
+plugins: [
+  new MiniCssExtractPlugin(),
+],
+...
+module: {
+	rules: [{
+		test: /\.(sc|sa|c)ss$/i,
+    use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']
+	}]
+}
+```
+
+Useful options in new MiniCssExtractPlugin():
+```
+new MiniCssExtractPlugin({
+  // Options similar to the same options in webpackOptions.output
+  // both options are optional
+  filename: "[name].css",
+  chunkFilename: "[id].css",
+}),
+```
+
+source: https://webpack.js.org/plugins/mini-css-extract-plugin/
 
 
 
