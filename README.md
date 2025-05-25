@@ -303,6 +303,15 @@ webpack.prod.js
 source: https://webpack.js.org/guides/production/
 
 
+## 15. watch option
+
+Webpack supports `watch` flag. Once enabled when files are changed webpack will rebuild automatically.
+
+1. add --watch option to package.json
+```
+"watch": "webpack --watch"
+```
+
 
 #### source
 
