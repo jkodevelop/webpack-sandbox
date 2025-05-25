@@ -21,11 +21,15 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  devServer: {
+    static: './dist',
+  },
   optimization: {
     minimizer: [
       new CssMinimizerPlugin({ parallel:true }),
     ],
     minimize: true, // enable minification when mode:'development', without this only mode:'producton' will minify
+    runtimeChunk: 'single',
   },
   plugins: [
     new HtmlWebpackPlugin({

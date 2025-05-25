@@ -313,6 +313,47 @@ Webpack supports `watch` flag. Once enabled when files are changed webpack will 
 ```
 
 
+## 16. webpack-dev-server
+
+Use **webpack-dev-server** to server the built project from a node server.
+
+1. install the module
+```
+npm install --save-dev webpack-dev-server
+```
+
+2. edit the webpack.config files
+```
+devServer: {
+  static: './dist',
+},
+```
+
+Additional edits
+a. More control with dev-server config, enable gzip and change the default port from 8080
+```
+devServer: {
+  ...
+  compress: true, // enable: gzip
+  port: 9000,
+},
+```
+b. This helps solve duplicate module issue, since this example has multiple entries in the entry: { index, print }. source: https://bundlers.tooling.report/code-splitting/multi-entry/
+```
+optimization: {
+  runtimeChunk: 'single',
+},
+```
+
+3. edit package.json with new script
+```
+"serve": "webpack serve --open --config webpack.dev.js"
+```
+
+source: https://webpack.js.org/guides/development/
+
+
+
 #### source
 
 https://webpack.js.org/guides/
