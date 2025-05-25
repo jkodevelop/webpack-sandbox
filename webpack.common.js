@@ -1,8 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
@@ -13,10 +12,10 @@ module.exports = {
     print: './src/print.js'
   },
   resolve: {
-    extensions: [".js",".cjs"],
+    extensions: ['.js','.cjs'],
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.js', // '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -30,30 +29,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Get Started Webpack',
     }),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css",
-    }),
     new CopyPlugin({
       patterns: [
-        { from: "src/secretstatic", to: "secret" },
+        { from: 'src/secretstatic', to: 'secret' },
       ],
     }),
   ],
   module: {
     rules: [{
-      test: /\.(sc|sa|c)ss$/i,
-      use: [
-        // webpack's rules order
-        // step 3: extract the css into an external stylesheet .css file
-        MiniCssExtractPlugin.loader,
-        // step 2: Tranlates CSS into CommonJS
-        'css-loader',
-        // step 1: Compiles Sass to CSS
-        'sass-loader'],
-    },{
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: 'asset/resource',
     },{

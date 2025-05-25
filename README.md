@@ -353,6 +353,47 @@ optimization: {
 source: https://webpack.js.org/guides/development/
 
 
+# 17. HMR dependsOn: webpack-dev-server
+
+HMR stands for Hot Module Replacement, this feature is used with devServer.
+This option can speed up development, because when changing the code devServer will try to inject the changes instead of refreshing the whole page (refreshing will reset the local states). 
+
+**IMPORT note:** webpack-dev-server v4+ has HMR enabled by default. devServer will try to hot reload until it cannot, which it will just reload the whole page. 
+
+1. to enable HMR in web-dev-server, edit webpack.dev.js
+```
+devServer: {
+  ...
+  hot: true,
+},
+```
+
+2. to Utilize HMR feature for JS modules, edit index.js using the HMR functions
+```
+if (module.hot) {
+  module.hot.accept('./logMe.cjs', function() {
+    console.log('accepting updated logMe module.');
+    logMe();
+  });
+}
+```
+*note*: when running web-dev-server, editing print.js will reload the page, but now updating logMe.cjs changes get injected with HMR so the page doesn't reload
+
+3. CSS update
+In order for HMR to work with CSS update with the current changed in webpack.config/dev.js so far. 
+The `MiniCssExtractPlugin` extract to file plugin needs to be removed when running web-dev-server.
+Replace `MiniCssExtractPlugin` with `style-loader` instead, to allow for HMR with CSS changes with devServer.
+
+Problem when running devServer x `MiniCssExtractPlugin` x HMR:
+`Refused to apply style from 'http://localhost:9000/index.3c257f127a5eff0eb344.css?1748203109816' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.`
+
+Using the `style-loader` fixes this problem.
+
+source: https://webpack.js.org/concepts/hot-module-replacement/
+
+**FINAL NOTE:** using module.hot.accept() could add a lot of code. So use it sparingly.
+
+
 
 #### source
 

@@ -1,35 +1,32 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
+  devtool: 'source-map',
   entry: { 
     index: './src/index.js',
     print: './src/print.js'
   },
   resolve: {
-    extensions: [".js",".cjs"],
+    extensions: ['.js','.cjs'],
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.js', // '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-  },
-  devServer: {
-    static: './dist',
   },
   optimization: {
     minimizer: [
       new CssMinimizerPlugin({ parallel:true }),
     ],
     minimize: true, // enable minification when mode:'development', without this only mode:'producton' will minify
-    runtimeChunk: 'single',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -38,12 +35,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: '[name].css', // '[name].[contenthash].css',
+      chunkFilename: '[id].css', // '[id].[contenthash].css',
     }),
     new CopyPlugin({
       patterns: [
-        { from: "src/secretstatic", to: "secret" },
+        { from: 'src/secretstatic', to: 'secret' },
       ],
     }),
   ],

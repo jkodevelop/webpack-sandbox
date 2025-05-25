@@ -15,25 +15,32 @@ import jsonExample from './others/example.json';
 import yamlExample from './others/example.yaml';
 
 function component() {
-    logMe();
-    const element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
-    element.classList.add('another');
+  logMe();
+  const element = document.createElement('div');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('hello');
+  element.classList.add('another');
 
-    const iconImg = new Image();
-    iconImg.src = Icon;
-    element.appendChild(iconImg);
+  const iconImg = new Image();
+  iconImg.src = Icon;
+  element.appendChild(iconImg);
 
-    console.log(xmlExample);
-    console.log(csvExample);
-    console.log(jsonExample);
+  console.log(xmlExample);
+  console.log(csvExample);
+  console.log(jsonExample);
 
-    console.log(yamlExample);
+  console.log(yamlExample);
 
-    printMe();
+  printMe();
 
-    return element;
+  return element;
 }
 
 document.body.appendChild(component());
+
+if (module.hot) {
+  module.hot.accept('./logMe.cjs', function() {
+    console.log('accepting updated logMe module.');
+    logMe();
+  });
+}
