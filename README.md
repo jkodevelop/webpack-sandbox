@@ -275,6 +275,34 @@ new CopyPlugin({
 source: https://webpack.js.org/plugins/copy-webpack-plugin/
 
 
+## 14. webpack PRODUCTION and DEVELOPMENT build mode and organization
+
+Webpack has default behavior that is built-in when building in production mode vs development mode. 
+Such as minifications, this is auto enabled when in production mode. 
+The help manage configuration between production and development webpack merge can help load common config with production and develop modes.
+
+1. install the merge module
+```
+npm install --save-dev webpack-merge
+```
+
+2. split the `webpack.config.js` into .common, .prod, .dev
+```
+webpack.common.js
+webpack.dev.js
+webpack.prod.js
+```
+
+3. update package.json npm scripts
+```
+"start": "npx webpack --config webpack.config.js",
+"build:dev": "webpack --config webpack.dev.js",
+"build": "webpack --config webpack.prod.js"
+```
+
+source: https://webpack.js.org/guides/production/
+
+
 
 #### source
 
