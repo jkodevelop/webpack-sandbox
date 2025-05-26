@@ -1,6 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+
+const { commonLog } = require('./src/globalHelper.js');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -11,6 +14,15 @@ module.exports = merge(common, {
     port: 9000,
     hot: true,
   },
+  plugins:[
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(false),
+      VERSION: JSON.stringify('v01.dev'),
+      'typeof window': JSON.stringify('object'),
+      'process_env': JSON.stringify(process.env),
+      COMMON_FUNC: commonLog,
+    }),
+  ],
   optimization: {
     runtimeChunk: 'single',
   },

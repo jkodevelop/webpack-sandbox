@@ -1,6 +1,9 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const { commonLog } = require('./src/globalHelper.js');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -11,6 +14,13 @@ module.exports = merge(common, {
       // both options are optional
       filename: '[name].css', // '[name].[contenthash].css',
       chunkFilename: '[id].css', // '[id].[contenthash].css',
+    }),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify('v01.prod'),
+      'typeof window': JSON.stringify('object'),
+      'process_env': JSON.stringify(process.env.NODE_ENV),
+      COMMON_FUNC: commonLog,
     }),
   ],
   module: {

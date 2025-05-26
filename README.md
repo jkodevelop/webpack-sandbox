@@ -391,7 +391,30 @@ Using the `style-loader` fixes this problem.
 
 source: https://webpack.js.org/concepts/hot-module-replacement/
 
-**FINAL NOTE:** using module.hot.accept() could add a lot of code. So use it sparingly.
+**FINAL THOUGHT:** using module.hot.accept() could add a lot of code. So use it sparingly.
+
+
+## 18. Environment Variables using DefinePlugin()
+
+There is option for Webpack to load global resources into the project. Using `DefinePlugin()` to load resources globally without having to import() it
+
+1. use `DefinePlugin()`
+```
+plugins: [
+  new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(true),
+    VERSION: JSON.stringify('5fa3b9'),
+    BROWSER_SUPPORTS_HTML5: true,
+    TWO: '1+1',
+    'typeof window': JSON.stringify('object'),
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  })
+]
+```
+
+*note:* This can even add function and libraries to the global space as well.
+
+source: https://webpack.js.org/plugins/define-plugin/
 
 
 

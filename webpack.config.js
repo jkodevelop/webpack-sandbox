@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -6,6 +7,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
+
+const { commonLog } = require('./src/globalHelper.js');
 
 module.exports = {
   mode: 'production',
@@ -42,6 +45,13 @@ module.exports = {
       patterns: [
         { from: 'src/secretstatic', to: 'secret' },
       ],
+    }),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify('00001'),
+      'typeof window': JSON.stringify('object'),
+      'process_env': JSON.stringify(process.env),
+      COMMON_FUNC: commonLog,
     }),
   ],
   module: {

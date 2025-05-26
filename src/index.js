@@ -31,6 +31,8 @@ function component() {
 
   console.log(yamlExample);
 
+  COMMON_FUNC(); // injected through webpack.DefinePlugin()
+
   printMe();
 
   return element;
