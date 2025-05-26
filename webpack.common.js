@@ -24,6 +24,9 @@ module.exports = {
       new CssMinimizerPlugin({ parallel:true }),
     ],
     minimize: true, // enable minification when mode:'development', without this only mode:'producton' will minify
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

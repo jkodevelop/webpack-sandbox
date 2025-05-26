@@ -417,6 +417,23 @@ plugins: [
 source: https://webpack.js.org/plugins/define-plugin/
 
 
+## 19. Code splitting
+
+There are multiple ways to tell webpack to split the codes. Only 2 options will be documented.
+
+A) First use `SplitChunksPlugin` add to webpack.config.js
+This is simplist, but webpack split has size limits
+```
+optimization: {
+  splitChunks: {
+    chunks: 'all',
+  },
+},
+```
+
+source: https://webpack.js.org/guides/code-splitting/
+
+
 
 #### source
 
