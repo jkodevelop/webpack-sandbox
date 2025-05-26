@@ -421,7 +421,7 @@ source: https://webpack.js.org/plugins/define-plugin/
 
 There are multiple ways to tell webpack to split the codes. Only 2 options will be documented.
 
-A) First use `SplitChunksPlugin` add to webpack.config.js
+A) One option is to use `SplitChunksPlugin` add to webpack.config.js
 This is simplist, but webpack split has size limits
 ```
 optimization: {
@@ -430,6 +430,13 @@ optimization: {
   },
 },
 ```
+
+B) Another option is using dynamic imports(), example index.js
+```
+const math = await import(/* webpackChunkName: "math" */ './math.js');
+```
+
+*note:* the `webpackChunkName` is one of the magic comment, ref: https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import
 
 source: https://webpack.js.org/guides/code-splitting/
 

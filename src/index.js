@@ -14,6 +14,13 @@ import jsonExample from './others/example.json';
 
 import yamlExample from './others/example.yaml';
 
+async function onClickHandler(){
+  const math = await import(/* webpackChunkName: "math" */ './math.js');
+  console.log('Math module loaded!');
+  console.log('2 + 3 =', math.add(2, 3));
+  console.log('4 * 5 =', math.multiply(4, 5));
+}
+
 function component() {
   logMe();
   const element = document.createElement('div');
@@ -34,6 +41,11 @@ function component() {
   COMMON_FUNC(); // injected through webpack.DefinePlugin()
 
   printMe();
+
+  const btn = document.createElement('button');
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = onClickHandler;
+  element.appendChild(btn);
 
   return element;
 }
