@@ -106,7 +106,19 @@ the example type support replaces the file-loader
 type: 'asset/resource'
 ```
 
+**note:** To control the output name of the bundle assets use generator.filename
+```
+{
+  test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  type: 'asset/resource',
+  generator: {
+    filename: '[name].[ext]',
+  },
+}
+```
+
 source: https://webpack.js.org/guides/asset-modules/
+
 
 ## 7. Additional loaders examples
 
@@ -353,7 +365,7 @@ optimization: {
 source: https://webpack.js.org/guides/development/
 
 
-# 17. HMR dependsOn: webpack-dev-server
+## 17. HMR dependsOn: webpack-dev-server
 
 HMR stands for Hot Module Replacement, this feature is used with devServer.
 This option can speed up development, because when changing the code devServer will try to inject the changes instead of refreshing the whole page (refreshing will reset the local states). 
