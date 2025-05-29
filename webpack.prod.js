@@ -5,7 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { commonLog } = require('./src/globalHelper.js');
 
-module.exports = merge(common, {
+module.exports = (env) => {
+
+return merge(common, {
   mode: 'production',
   devtool: 'source-map',
   plugins: [
@@ -20,6 +22,7 @@ module.exports = merge(common, {
       VERSION: JSON.stringify('v01.prod'),
       'typeof window': JSON.stringify('object'),
       'process_env': JSON.stringify(process.env.NODE_ENV),
+      'node_cli_env': JSON.stringify(env),
       COMMON_FUNC: commonLog,
     }),
   ],
@@ -37,3 +40,5 @@ module.exports = merge(common, {
     }],
   },
 });
+
+};

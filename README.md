@@ -406,27 +406,39 @@ source: https://webpack.js.org/concepts/hot-module-replacement/
 **FINAL THOUGHT:** using module.hot.accept() could add a lot of code. So use it sparingly.
 
 
-## 18. Environment Variables using DefinePlugin()
+## 18. Environment Variables
 
-There is option for Webpack to load global resources into the project. Using `DefinePlugin()` to load resources globally without having to import() it
+In webpack there is a command line environment option `--env` which allows for variables to be passed into webpack build process.
 
-1. use `DefinePlugin()`
+1. pass the environment option
 ```
-plugins: [
-  new webpack.DefinePlugin({
-    PRODUCTION: JSON.stringify(true),
-    VERSION: JSON.stringify('5fa3b9'),
-    BROWSER_SUPPORTS_HTML5: true,
-    TWO: '1+1',
-    'typeof window': JSON.stringify('object'),
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  })
-]
+webpack --config webpack.config.js --env production --env scripts=start
 ```
 
-*note:* This can even add function and libraries to the global space as well.
+2. To pass the env variables, a small change to webpack.config.js must be add
 
-source: https://webpack.js.org/plugins/define-plugin/
+webpack.config.js - a parameter `(env)` is passed before the configurations options.
+```
+module.exports = (env) => {
+  return {
+    entry ...
+    output ...
+  }
+}
+```
+
+3. To access the env variables from example:
+
+`--env production` => production = true
+`--env scripts=start` => scripts = start
+
+```
+module.exports = (env) => {
+  
+  console.log(env.production) // true
+  
+}
+```
 
 
 ## 19. Code splitting
@@ -451,6 +463,29 @@ const math = await import(/* webpackChunkName: "math" */ './math.js');
 *note:* the `webpackChunkName` is one of the magic comment, ref: https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import
 
 source: https://webpack.js.org/guides/code-splitting/
+
+
+## 20. DefinePlugin
+
+There is option for Webpack to load global resources into the project. Using `DefinePlugin()` to load resources globally without having to import() it
+
+1. use `DefinePlugin()`
+```
+plugins: [
+  new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(true),
+    VERSION: JSON.stringify('5fa3b9'),
+    BROWSER_SUPPORTS_HTML5: true,
+    TWO: '1+1',
+    'typeof window': JSON.stringify('object'),
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  })
+]
+```
+
+*note:* This can even add function and libraries to the global space as well.
+
+source: https://webpack.js.org/plugins/define-plugin/
 
 
 

@@ -5,7 +5,9 @@ const common = require('./webpack.common.js');
 
 const { commonLog } = require('./src/globalHelper.js');
 
-module.exports = merge(common, {
+module.exports = (env) => {
+
+return merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -20,6 +22,7 @@ module.exports = merge(common, {
       VERSION: JSON.stringify('v01.dev'),
       'typeof window': JSON.stringify('object'),
       'process_env': JSON.stringify(process.env),
+      'node_cli_env': JSON.stringify(env),
       COMMON_FUNC: commonLog,
     }),
   ],
@@ -40,3 +43,5 @@ module.exports = merge(common, {
     }],
   },
 });
+
+};

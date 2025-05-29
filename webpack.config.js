@@ -10,7 +10,9 @@ const yaml = require('yamljs');
 
 const { commonLog } = require('./src/globalHelper.js');
 
-module.exports = {
+module.exports = (env) => {
+
+return {
   mode: 'production',
   devtool: 'source-map',
   entry: { 
@@ -54,6 +56,7 @@ module.exports = {
       VERSION: JSON.stringify('00001'),
       'typeof window': JSON.stringify('object'),
       'process_env': JSON.stringify(process.env),
+      'node_cli_env': JSON.stringify(env),
       COMMON_FUNC: commonLog,
     }),
   ],
@@ -96,3 +99,4 @@ module.exports = {
   },
 };
 
+};

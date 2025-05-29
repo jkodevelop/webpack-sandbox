@@ -5,11 +5,11 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config webpack.config.js",
-    "build:dev": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "watch": "webpack --watch --config webpack.dev.js",
-    "serve": "webpack serve --open --config webpack.dev.js"
+    "start": "webpack --config webpack.config.js --env production --env scripts=start",
+    "build:dev": "webpack --config webpack.dev.js --env development --env scripts=builddev",
+    "build": "webpack --config webpack.prod.js --env production --env scripts=build",
+    "watch": "webpack --watch --config webpack.prod.js --env production --env scripts=watch",
+    "serve": "webpack serve --open --config webpack.dev.js --env development --env scripts=serve"
   },
   "keywords": [
     "webpack",
