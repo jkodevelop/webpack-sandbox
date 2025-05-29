@@ -1,0 +1,14 @@
+@use 'fonts.scss';
+
+@use "var.scss" as var;
+
+html {
+  background: url('../assets/bg-griddots.png') #ffffff repeat;
+}
+
+.hello {
+  font-family: 'RobotoGoogleFont';
+  font-weight: 600;
+  font-style: italic;
+  color: var.$primary-color;
+}

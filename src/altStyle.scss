@@ -1,9 +1,0 @@
-@use "var.scss" as v;
-
-$color-two: gray;
-
-.another {
-  color: v.$color-one;
-  display: inline;
-  border: 1px solid $color-two;
-}

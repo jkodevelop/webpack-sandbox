@@ -7,15 +7,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 const yaml = require('yamljs');
 
 module.exports = {
-  entry: { 
-    index: './src/index.js',
-    print: './src/print.js'
-  },
+  entry: './src/index.jsx',
   resolve: {
-    extensions: ['.js','.cjs'],
+    extensions: ['*','.js','.cjs','.jsx'],
   },
   output: {
-    filename: '[name].bundle.js', // '[name].[contenthash].js',
+    filename: '[name].[contenthash].js', // '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -31,20 +28,33 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Get Started Webpack',
+      template: 'src/index.html',
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'src/secretstatic', to: 'secret' },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: 'src/secretstatic', to: 'secret' },
+    //   ],
+    // }),
   ],
   module: {
-    rules: [{
+    rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader'],
+    },
+    {
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: 'asset/resource',
+      generator: {
+        filename: '[name].[ext]',
+      },
     },{
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
       type: 'asset/resource',
+      generator: {
+        filename: '[name].[ext]',
+      },
     },{
       test: /\.(csv|tsv)$/i,
       use: ['csv-loader'],

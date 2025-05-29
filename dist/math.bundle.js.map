@@ -1,1 +1,0 @@
-{"version":3,"file":"math.bundle.js","mappings":";;;;;;;;;;;AAAO;AACP;AACA;AACA;AACO;AACP;AACA","sources":["webpack://webpack-sandbox/./src/math.js"],"sourcesContent":["export function add(a, b) {\r\n  return a + b;\r\n}\r\n\r\nexport function multiply(a, b) {\r\n  return a * b;\r\n}"],"names":[],"sourceRoot":""}

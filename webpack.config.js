@@ -13,15 +13,12 @@ const { commonLog } = require('./src/globalHelper.js');
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: { 
-    index: './src/index.js',
-    print: './src/print.js'
-  },
+  entry: './src/index.jsx',
   resolve: {
-    extensions: ['.js','.cjs'],
+    extensions: ['*','.js','.cjs','.jsx'],
   },
   output: {
-    filename: '[name].bundle.js', // '[name].[contenthash].js',
+    filename: '[name].[contenthash].js', // '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -37,18 +34,19 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Get Started Webpack',
+      template: 'src/index.html',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].css', // '[name].[contenthash].css',
-      chunkFilename: '[id].css', // '[id].[contenthash].css',
+      filename: '[name].[contenthash].css', // '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css', // '[id].[contenthash].css',
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'src/secretstatic', to: 'secret' },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: 'src/secretstatic', to: 'secret' },
+    //   ],
+    // }),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(true),
       VERSION: JSON.stringify('00001'),
@@ -58,7 +56,13 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [{
+    rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader'],
+    },
+    {
       test: /\.(sc|sa|c)ss$/i,
       use: [
         // webpack's rules order
@@ -71,9 +75,15 @@ module.exports = {
     },{
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: 'asset/resource',
+      generator: {
+        filename: '[name].[ext]',
+      },
     },{
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
       type: 'asset/resource',
+      generator: {
+        filename: '[name].[ext]',
+      },
     },{
       test: /\.(csv|tsv)$/i,
       use: ['csv-loader'],

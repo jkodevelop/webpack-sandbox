@@ -1,5 +1,5 @@
 function commonLog() {
-  console.log('This is globally added function()!');
+  console.log('global function example, injected through webpack.DefinePlugin()');
 }
 
 module.exports = {

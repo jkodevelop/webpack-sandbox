@@ -12,8 +12,8 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].css', // '[name].[contenthash].css',
-      chunkFilename: '[id].css', // '[id].[contenthash].css',
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(true),

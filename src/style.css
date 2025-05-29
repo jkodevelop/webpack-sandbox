@@ -1,8 +1,0 @@
-@import url("base.css");
-
-.hello {
-  font-family: 'RobotoGoogleFont';
-  font-weight: 600;
-  font-style: italic;
-  background: url('./assets/icon.png');
-}
