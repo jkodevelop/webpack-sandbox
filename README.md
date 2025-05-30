@@ -515,6 +515,59 @@ plugins:[
 source: https://www.npmjs.com/package/dotenv-webpack
 
 
+## 22. Reactjs: Webpack support
+
+To support `React` development, just need to add babel and some of it's preset to get started
+
+1. install babel and presets and the babel loader for webpack
+```
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+```
+
+2. install react packages
+```
+npm install --save react react-dom
+```
+
+3. update webpack.config.js
+
+a) change entry
+```
+entry: './src/index.jsx',
+```
+
+b) update resolve
+```
+resolve: {
+  extensions: ['*','.js','.cjs','.jsx'],
+},
+```
+
+c) need to add an html template for react
+```
+new HtmlWebpackPlugin({
+  ...
+  template: 'src/index.html',
+}),
+```
+
+d) add new `babel-loader`
+```
+{
+  test: /\.(cjs|js|jsx)$/,
+  exclude: /node_modules/,
+  use: ['babel-loader'],
+},
+```
+
+e) to support Hot Module Replacement(HMR) is simple, add to `index.jsx`
+```
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept();
+}
+```
+
+
 
 #### source
 
