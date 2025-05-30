@@ -567,6 +567,13 @@ if (import.meta.webpackHot) {
 }
 ```
 
+## 22b. use react-refresh instead of HMR
+
+1. install the packages
+```
+npm install --save-dev @pmmmwh/react-refresh-webpack-plugin react-refresh
+```
+
 
 
 #### source
