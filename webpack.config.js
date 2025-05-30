@@ -18,7 +18,7 @@ module.exports = (env) => {
     devtool: 'source-map',
     entry: './src/index.jsx',
     resolve: {
-      extensions: ['*','.js','.cjs','.jsx'],
+      extensions: ['*','.js','.jsx'],
     },
     output: {
       filename: '[name].[contenthash].js', // '[name].[contenthash].js',
@@ -62,7 +62,7 @@ module.exports = (env) => {
     module: {
       rules: [
       {
-        test: /\.(cjs|js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
