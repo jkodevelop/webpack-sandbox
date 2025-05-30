@@ -106,7 +106,19 @@ the example type support replaces the file-loader
 type: 'asset/resource'
 ```
 
+**note:** To control the output name of the bundle assets use generator.filename
+```
+{
+  test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  type: 'asset/resource',
+  generator: {
+    filename: '[name].[ext]',
+  },
+}
+```
+
 source: https://webpack.js.org/guides/asset-modules/
+
 
 ## 7. Additional loaders examples
 
@@ -353,7 +365,7 @@ optimization: {
 source: https://webpack.js.org/guides/development/
 
 
-# 17. HMR dependsOn: webpack-dev-server
+## 17. HMR dependsOn: webpack-dev-server
 
 HMR stands for Hot Module Replacement, this feature is used with devServer.
 This option can speed up development, because when changing the code devServer will try to inject the changes instead of refreshing the whole page (refreshing will reset the local states). 
@@ -394,27 +406,39 @@ source: https://webpack.js.org/concepts/hot-module-replacement/
 **FINAL THOUGHT:** using module.hot.accept() could add a lot of code. So use it sparingly.
 
 
-## 18. Environment Variables using DefinePlugin()
+## 18. Environment Variables
 
-There is option for Webpack to load global resources into the project. Using `DefinePlugin()` to load resources globally without having to import() it
+In webpack there is a command line environment option `--env` which allows for variables to be passed into webpack build process.
 
-1. use `DefinePlugin()`
+1. pass the environment option
 ```
-plugins: [
-  new webpack.DefinePlugin({
-    PRODUCTION: JSON.stringify(true),
-    VERSION: JSON.stringify('5fa3b9'),
-    BROWSER_SUPPORTS_HTML5: true,
-    TWO: '1+1',
-    'typeof window': JSON.stringify('object'),
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  })
-]
+webpack --config webpack.config.js --env production --env scripts=start
 ```
 
-*note:* This can even add function and libraries to the global space as well.
+2. To pass the env variables, a small change to webpack.config.js must be add
 
-source: https://webpack.js.org/plugins/define-plugin/
+webpack.config.js - a parameter `(env)` is passed before the configurations options.
+```
+module.exports = (env) => {
+  return {
+    entry ...
+    output ...
+  }
+}
+```
+
+3. To access the env variables from example:
+
+`--env production` => production = true
+`--env scripts=start` => scripts = start
+
+```
+module.exports = (env) => {
+  
+  console.log(env.production) // true
+  
+}
+```
 
 
 ## 19. Code splitting
@@ -439,6 +463,56 @@ const math = await import(/* webpackChunkName: "math" */ './math.js');
 *note:* the `webpackChunkName` is one of the magic comment, ref: https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import
 
 source: https://webpack.js.org/guides/code-splitting/
+
+
+## 20. DefinePlugin
+
+There is option for Webpack to load global resources into the project. Using `DefinePlugin()` to load resources globally without having to import() it
+
+1. use `DefinePlugin()`
+```
+plugins: [
+  new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(true),
+    VERSION: JSON.stringify('5fa3b9'),
+    BROWSER_SUPPORTS_HTML5: true,
+    TWO: '1+1',
+    'typeof window': JSON.stringify('object'),
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  })
+]
+```
+
+*note:* This can even add function and libraries to the global space as well.
+
+source: https://webpack.js.org/plugins/define-plugin/
+
+
+## 21. Dotenv: using .env files
+
+For deployment it is best to store environment variables outside the code. .env is a common string file to store sensitive information.
+The `Dotenv()` allows webpack to load .env into the project space and bundled.
+
+1. install the plugin
+```
+npm install --save-dev dotenv-webpack
+```
+
+2. create the .env files, it's recommend to have production and development separate.
+example: .env.production & .env.development 
+
+3. load the file
+```
+plugins:[
+  new Dotenv({
+    path: './.env.development',
+  }),
+],
+```
+
+**Final thought:** it is best to use `Dotenv()` to serve sensitive information. Instead of using cli options `Environment Variables` and `DefinePlugin()`. DefinePlugin() can be used to inject global functions like logging, etc...
+
+source: https://www.npmjs.com/package/dotenv-webpack
 
 
 

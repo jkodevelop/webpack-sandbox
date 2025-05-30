@@ -1,10 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
+
+const { commonLog } = require('./src/globalHelper.js');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -35,6 +38,10 @@ module.exports = {
     //     { from: 'src/secretstatic', to: 'secret' },
     //   ],
     // }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify('v1.0'),
+      COMMON_FUNC: commonLog,
+    }),
   ],
   module: {
     rules: [
