@@ -512,6 +512,8 @@ plugins:[
 
 **Final thought:** it is best to use `Dotenv()` to serve sensitive information. Instead of using cli options `Environment Variables` and `DefinePlugin()`. DefinePlugin() can be used to inject global functions like logging, etc...
 
+source: https://www.npmjs.com/package/dotenv-webpack
+
 
 
 #### source
