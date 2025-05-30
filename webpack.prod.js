@@ -1,13 +1,15 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
 const common = require('./webpack.common.js');
 
 module.exports = (env) => {
 
-  return merge(common, {
-    mode: 'production',
+  // this controls the mode: and new Dotenv(path)
+  const mode = 'production';
+  const args = { mode };
+
+  return merge(common(args), {
     devtool: 'source-map',
     plugins: [
       new MiniCssExtractPlugin({
@@ -15,9 +17,6 @@ module.exports = (env) => {
         // both options are optional
         filename: '[name].css', // '[name].[contenthash].css',
         chunkFilename: '[id].css', // '[id].[contenthash].css',
-      }),
-      new Dotenv({
-        path: './.env.production',
       }),
     ],
     module: {

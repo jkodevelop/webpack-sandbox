@@ -1,13 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const Dotenv = require('dotenv-webpack');
 const common = require('./webpack.common.js');
 
 module.exports = (env) => {
 
-  return merge(common, {
-    mode: 'development',
+  // this controls the mode: and new Dotenv(path)
+  const mode = 'development'; 
+  const args = { mode };
+
+  return merge(common(args), {
     devtool: 'inline-source-map',
     devServer: {
       static: path.join(__dirname, 'dist'),
@@ -15,11 +17,6 @@ module.exports = (env) => {
       port: 9000,
       hot: true,
     },
-    plugins:[
-      new Dotenv({
-        path: './.env.development',
-      }),
-    ],
     optimization: {
       runtimeChunk: 'single',
     },
