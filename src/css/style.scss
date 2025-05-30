@@ -2,13 +2,16 @@
 
 @use "var.scss" as var;
 
+* {
+  font-family: 'RobotoGoogleFont';
+  font-weight: 600;
+  font-style: italic;
+}
+
 html {
   background: url('../assets/bg-griddots.png') #ffffff repeat;
 }
 
 .hello {
-  font-family: 'RobotoGoogleFont';
-  font-weight: 600;
-  font-style: italic;
   color: var.$primary-color;
 }

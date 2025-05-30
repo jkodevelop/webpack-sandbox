@@ -567,11 +567,46 @@ if (import.meta.webpackHot) {
 }
 ```
 
-## 22b. use react-refresh instead of HMR
+## 22b. (optional) use react-refresh (new HMR)
+
+Adding `react-refresh` to the project is on top of webpack HMR. This library is built by react team.
+
+**IMPORTANT:** 
 
 1. install the packages
 ```
 npm install --save-dev @pmmmwh/react-refresh-webpack-plugin react-refresh
+```
+
+2. edit webpack.config.js, new plugin
+```
+plugins: [
+  new ReactRefreshWebpackPlugin(),
+]
+
+// safer version:
+plugins: [
+  isDev && new ReactRefreshWebpackPlugin(),
+]
+```
+
+3. edit webpack.config.js, update babel loader
+```
+{
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  use: [{
+    loader: 'babel-loader',
+    options: {
+      plugins: [require('react-refresh/babel')], 
+    },
+  }],
+}
+
+// safer version
+{
+  plugins: [isDev && require('react-refresh/babel')].filter(Boolean),
+}
 ```
 
 

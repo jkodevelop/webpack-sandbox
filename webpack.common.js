@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 // custom parser libraries
 const yaml = require('yamljs');
@@ -11,6 +12,7 @@ const yaml = require('yamljs');
 const { commonLog } = require('./src/globalHelper.js');
 
 module.exports = (args) => {
+  const isDev = args.mode === 'development';
   return {
     mode: args.mode,
     entry: './src/index.jsx',
@@ -48,13 +50,19 @@ module.exports = (args) => {
       new Dotenv({
         path: `./.env.${args.mode}`,
       }),
-    ],
+      isDev && new ReactRefreshWebpackPlugin(),
+    ].filter(Boolean),
     module: {
       rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            plugins: [isDev && require('react-refresh/babel')].filter(Boolean), // .filter() removes falsy values from the array
+          },
+        }],
       },{
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
