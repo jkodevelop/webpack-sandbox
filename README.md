@@ -488,6 +488,31 @@ plugins: [
 source: https://webpack.js.org/plugins/define-plugin/
 
 
+## 21. Dotenv: using .env files
+
+For deployment it is best to store environment variables outside the code. .env is a common string file to store sensitive information.
+The `Dotenv()` allows webpack to load .env into the project space and bundled.
+
+1. install the plugin
+```
+npm install --save-dev dotenv-webpack
+```
+
+2. create the .env files, it's recommend to have production and development separate.
+example: .env.production & .env.development 
+
+3. load the file
+```
+plugins:[
+  new Dotenv({
+    path: './.env.development',
+  }),
+],
+```
+
+**Final thought:** it is best to use `Dotenv()` to serve sensitive information. Instead of using cli options `Environment Variables` and `DefinePlugin()`. DefinePlugin() can be used to inject global functions like logging, etc...
+
+
 
 #### source
 
