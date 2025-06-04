@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -17,6 +18,17 @@ module.exports = (env) => {
       port: 9000,
       hot: true,
     },
+    plugins: [
+      new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3000,
+        proxy: 'http://localhost:9000'
+      },{
+        // prevent BrowserSync from reloading the page
+        // and let Webpack Dev Server take care of this
+        reload: false,
+      }),
+    ],
     optimization: {
       runtimeChunk: 'single',
     },

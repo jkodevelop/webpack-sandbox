@@ -515,6 +515,44 @@ plugins:[
 source: https://www.npmjs.com/package/dotenv-webpack
 
 
+## ADDITIONAL FEATURE: browser-sync
+
+**Browser-sync** allows for project to run on mutiple browser windows and sychronize the user interactions across them. This is optional but useful for testing UI/UX on different type of screen and windows sizes.
+
+There is a webpack plugin from Browser-sync
+1. install the plugin
+```
+npm install --save-dev browser-sync browser-sync-webpack-plugin
+```
+
+2. set `webpack.config.js` Browser-sync to be a proxy to webpack's devServer
+
+Browser-sync and devServer will both be running, but browser-sync will be a proxy to point to webpack's dev server
+
+(example in `webpack.dev.js`)
+```
+devServer: {
+  static: path.join(__dirname, 'dist'),
+  compress: true, // enable: gzip
+  port: 9000,
+  hot: true,
+},
+plugins: [
+  new BrowserSyncPlugin({
+    host: 'localhost',
+    port: 3000,
+    proxy: 'http://localhost:9000'
+  },{
+    // prevent BrowserSync from reloading the page
+    // and let Webpack Dev Server take care of this
+    reload: false,
+  }),
+],
+```
+
+**note:** in this example, the webpack devServer is running on `localhost:9000` and Browser-sync is running on `localhost:3000`.
+
+
 
 #### source
 
