@@ -552,6 +552,8 @@ plugins: [
 
 **note:** in this example, the webpack devServer is running on `localhost:9000` and Browser-sync is running on `localhost:3000`.
 
+source: https://www.npmjs.com/package/browser-sync-webpack-plugin
+
 
 
 #### source
